@@ -1,0 +1,19 @@
+wordpress:
+    image: wordpress
+    links:
+     - mariadb:mysql
+    environment:
+     - WORDPRESS_DB_PASSWORD=<empty>
+    ports:
+     - "80:80"
+    volumes:
+     - ./code:/code
+     - ./html:/var/www/html
+     - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+mariadb:
+    image: mariadb
+    environment:
+     - MYSQL_ROOT_PASSWORD=<empty>
+     - MYSQL_DATABASE=<empty>
+    volumes:
+     - ./database:/var/lib/mysql
