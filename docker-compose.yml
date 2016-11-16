@@ -4,6 +4,7 @@ wordpress:
      - mariadb:mysql
     environment:
      - WORDPRESS_DB_PASSWORD=;kudosdatadb;2016
+     - VIRTUAL_HOST=www.kudosdata.com
     ports:
      - "127.0.0.1:8081:80"
     volumes:
@@ -28,3 +29,9 @@ phpmyadmin:
   environment:
     MYSQL_USERNAME: root
     MYSQL_ROOT_PASSWORD: password
+nginx:
+    image: jwilder/nginx-proxy
+    ports:
+     - 80:80
+    volumes:
+     - /var/run/docker.sock:/tmp/docker.sock:ro
